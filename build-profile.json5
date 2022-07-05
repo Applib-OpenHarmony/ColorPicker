@@ -22,6 +22,10 @@
           ]
         }
       ]
+    },
+    {
+      "name": "color_picker",
+      "srcPath": "./color_picker"
     }
   ]
 }

@@ -14,7 +14,7 @@
 */
 
 @CustomDialog
-export struct DialogExample {
+struct colorDialog {
   @State h: number = 0
   @State s: number = 100
   @State l: number = 50
@@ -73,5 +73,8 @@ export struct DialogExample {
       Row()
         .height(30)
     }
+    .margin({ top: 5 })
   }
 }
+
+export default colorDialog

@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "com.example.myapplication",
+    "bundleName": "com.example.colorpicker",
     "vendor": "example",
     "version": {
       "code": 1000000,

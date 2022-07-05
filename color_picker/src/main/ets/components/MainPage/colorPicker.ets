@@ -13,10 +13,13 @@
 * limitations under the License.
 */
 
-import { DialogExample } from '@ohos/color-picker'
+import colorDialog  from './colorDialog'
+import router from '@system.router'
 
-@CustomDialog
-export struct MainPage {
+@Entry
+@Component
+struct colorPicker {
+  private model: colorPicker.Model = new colorPicker.Model()
   @State col: string = '#ff0000'
   @State h: number = 0
   @State s: number = 100
@@ -27,13 +30,11 @@ export struct MainPage {
   @State SliderL: number = 50
   @State OpacityOne: number = 1
   dialogController: CustomDialogController = new CustomDialogController({
-    builder: DialogExample({ action: (value) => this.onAccept(value) }),
+    builder: colorDialog({ action: (value) => this.onAccept(value) }),
     cancel: this.existApp,
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
   });
-  controller: CustomDialogController;
-  action: (string) => void;
 
   onAccept(value: number) {
     this.OpacityOne = 1
@@ -45,7 +46,6 @@ export struct MainPage {
     this.ColorFromS = b
     this.ColorFromGradient = b
     this.col = b
-    console.log(this.col)
   }
 
   existApp() {
@@ -89,9 +89,8 @@ export struct MainPage {
               .fontWeight(FontWeight.Bolder)
               .backgroundColor(0XE0E1E4)
               .onClick(() => {
-                this.controller.close();
-                this.action(this.col);
                 console.log(this.col)
+                router.back()
               })
           }
         }
@@ -120,7 +119,6 @@ export struct MainPage {
             this.col = b
             this.ColorFromGradient = b
             this.ColorFromS = b
-            console.log(this.col)
           })
         Row()
           .height(40)
@@ -147,7 +145,6 @@ export struct MainPage {
               var b = this.rgbToHex(a[0], a[1], a[2])
               this.ColorFromS = b
               this.col = b
-              console.log(this.col)
             })
         }
         .width('100%')
@@ -184,7 +181,6 @@ export struct MainPage {
               var a = this.HSLToRGB(this.h, this.SliderS, this.SliderL)
               var b = this.rgbToHex(a[0], a[1], a[2])
               this.col = b
-              console.log(this.col)
             })
         }
         .width('100%')
@@ -207,8 +203,14 @@ export struct MainPage {
       .padding({ right: '2%', left: '2%', top: '1%' })
     }
     .opacity(this.OpacityOne)
-    .height('120%')
+    .height('100%')
   }
 }
 
-export { DialogExample } from './colorDialog'
+namespace colorPicker {
+  export class Model {
+  }
+}
+
+export default colorPicker;
+

@@ -14,34 +14,14 @@
 */
 
 import { colorPicker }  from '@ohos/color_picker'
-import router from '@system.router';
 
 @Entry
 @Component
-struct Index {
+struct ColorPickerUI {
+  private model: colorPicker.Model = new colorPicker.Model()
   build() {
     Column() {
-
-      Column({ space: 20 }) {
-        Row() {
-          Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
-            Button('Color Picker')
-              .height(60)
-              .fontSize(20)
-              .fontWeight(FontWeight.Bolder)
-              .backgroundColor(Color.White)
-              .fontColor(Color.Black)
-              .onClick(() => {
-                router.push({ uri: "pages/colorPickerUI" })
-              })
-          }
-        }
-        .width('100%')
-        .backgroundColor('#c2b7bf')
-        .height(70)
-      }
-      .alignItems(HorizontalAlign.Center)
-      .margin({ top: 30 })
+      colorPicker({ model: this.model })
     }
   }
 }

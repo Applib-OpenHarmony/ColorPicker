@@ -1,7 +1,7 @@
 {
   "app": {
     "vendor": "example",
-    "bundleName": "com.example.myapplication",
+    "bundleName": "com.example.colorpicker",
     "version": {
       "code": 1000000,
       "name": "1.0.0"
@@ -55,7 +55,8 @@
           "type": "pageAbility"
         },
         "pages": [
-          "pages/index"
+          "pages/index",
+          "pages/colorPickerUI"
         ],
         "name": ".MainAbility",
         "window": {

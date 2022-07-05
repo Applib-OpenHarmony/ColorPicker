@@ -1,0 +1,24 @@
+{
+  "app": {
+    "bundleName": "com.example.colorpicker",
+    "vendor": "example",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.example.color_picker",
+    "deviceType": [
+      "phone",
+      "tablet"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "color_picker",
+      "moduleType": "har"
+    },
+    "uiSyntax": "ets"
+  }
+}

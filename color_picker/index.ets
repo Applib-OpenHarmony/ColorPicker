@@ -13,8 +13,4 @@
 * limitations under the License.
 */
 
-import abilityTest from './Ability.test'
-
-export default function testsuite() {
-  abilityTest()
-}
+export { default as colorPicker } from './src/main/ets/components/MainPage/colorPicker'
