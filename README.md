@@ -28,7 +28,7 @@ private model: colorPicker.Model = new colorPicker.Model()
   }
   ```
   
- <img src = "screenshots/colorPicker.png">
+ ![colorPicker](screenshots/colorPicker.png)
   
 
 
@@ -41,6 +41,30 @@ private model: colorPicker.Model = new colorPicker.Model()
 3. Change **Saturation** and **Lightness** to choose any variation of that main color.
 
 4. On pressing **OK**, HEX-Code of selected color will be printed in previewer log.
+
+## Directory Structure
+```
+|---- ColorPicker (Project Name)
+|     |---- color_picker (Color Picker Library)
+|           |---- src
+|                 |---- main
+|                       |---- ets
+|                             |----components
+|                                   |---- MainPage
+|                                         |---- colorDialog.ets
+|                                         |---- colorPicker.ets
+|           |---- index.ets
+|
+|     |---- entry
+|           |---- src
+|                 |---- main
+|                       |---- ets
+|                             |----MainAbility
+|                                   |---- pages
+|                                         |---- colorPickerUI.ets
+|                                         |---- index.ets
+
+```
 
 ## Compatibility
 Supports OpenHarmony API version 8
