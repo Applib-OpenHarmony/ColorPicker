@@ -4,20 +4,43 @@ Color Picker in OpenHarmony
 ## Download & Install
 Install using npm
 
-```npm i ohos-color-picker```
+```npm i @ohos/color_picker```
 
-## Usage Instructions
+Details about OpenHarmony NPM environment configuration, see at [here](https://gitee.com/openharmony-tpc/docs/blob/master/OpenHarmony_npm_usage.md)
+
+
+## Installation
 1. Import files and code dependencies
 ```
-import { MainPage } from '@ohos/color-picker'
+import { colorPicker }  from '@ohos/color_picker'
 ```
-2. Use the button **Color Picker** to open the Main Page .
+2. Initialize ColorPicker model data
+```
+private model: colorPicker.Model = new colorPicker.Model()
+```
+3. Code for creating ColorPicker Screen
+```
+  private model: colorPicker.Model = new colorPicker.Model()
+  build() {
+    Column() {
+      colorPicker({ model: this.model })
+    }
+  }
+  ```
+  
+ <img src = "screenshots/colorPicker.png">
+  
 
-3. In Main Page, use button **Selection of Color** to choose the main color.
 
-4. Change **Saturation** and **Lightness** to choose any variation of main color.
 
-5. At main Screen, selected color and its Hex-Code will be displayed.
+## Usage Instructions
+1. Use the button **Color Picker** to open the ColorPicker Screen .
+
+2. In ColorPicker Screen, use button **Selection of Color** to open the customDialog and choose the main color.
+
+3. Change **Saturation** and **Lightness** to choose any variation of that main color.
+
+4. On pressing **OK**, HEX-Code of selected color will be printed in previewer log.
 
 ## Compatibility
 Supports OpenHarmony API version 8
