@@ -1,7 +1,8 @@
 # ColorPicker
 Color Picker in OpenHarmony
 
- ![colorPicker](https://github.com/AyushLM/ColorPicker-1/blob/main/screenshots/ColorPickerAnimation.gif)
+ ![colorPicker](screenshots/ColorPickerAnimation.gif)
+ 
 
 
 ## Download & Install
@@ -33,6 +34,26 @@ private model: colorPicker.Model = new colorPicker.Model()
   
  ![colorPicker](screenshots/colorPicker.png)
   
+4. Code for creating colorDialog Screen
+```
+dialogController: CustomDialogController = new CustomDialogController({
+    builder: colorDialog({ action: (value) => this.onAccept(value) }),
+    cancel: this.existApp,
+    autoCancel: true,
+    alignment: DialogAlignment.Bottom,
+  });
+
+  onAccept(value: number) {
+    this.h = value;
+    var a = this.HSLToRGB(this.h, this.SliderS, this.SliderL)
+    var b = this.rgbToHex(a[0], a[1], a[2])
+  }
+
+  existApp() {
+    this.OpacityOne = 1
+    console.log("Cancel dialog!");
+  }
+  ```
 
  ![colorPicker](screenshots/colorDialog.png)
 
@@ -75,3 +96,6 @@ private model: colorPicker.Model = new colorPicker.Model()
 
 ## Compatibility
 Supports OpenHarmony API version 8
+
+## Reference
+Design by: [Ayush](https://github.com/AyushLM)
