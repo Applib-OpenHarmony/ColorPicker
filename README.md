@@ -1,6 +1,9 @@
 # ColorPicker
 Color Picker in OpenHarmony
 
+ ![colorPicker](https://github.com/AyushLM/ColorPicker-1/blob/main/screenshots/ColorPickerAnimation.gif)
+
+
 ## Download & Install
 Install using npm
 
@@ -34,6 +37,7 @@ private model: colorPicker.Model = new colorPicker.Model()
  ![colorPicker](screenshots/colorDialog.png)
 
 
+
 ### Use Cases
 1. Use the button **Color Picker** to open the ColorPicker Screen .
 
@@ -42,6 +46,8 @@ private model: colorPicker.Model = new colorPicker.Model()
 3. Change **Saturation** and **Lightness** to choose any variation of that main color.
 
 4. On pressing **OK**, HEX-Code of selected color will be printed in previewer log.
+
+
 
 ## Directory Structure
 ```
