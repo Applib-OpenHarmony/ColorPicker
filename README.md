@@ -9,7 +9,7 @@ Install using npm
 Details about OpenHarmony NPM environment configuration, see at [here](https://gitee.com/openharmony-tpc/docs/blob/master/OpenHarmony_npm_usage.md)
 
 
-## Installation
+## Usage Instructions
 1. Import files and code dependencies
 ```
 import { colorPicker }  from '@ohos/color_picker'
@@ -31,9 +31,10 @@ private model: colorPicker.Model = new colorPicker.Model()
  ![colorPicker](screenshots/colorPicker.png)
   
 
+ ![colorPicker](screenshots/colorDialog.png)
 
 
-## Usage Instructions
+### Use Cases
 1. Use the button **Color Picker** to open the ColorPicker Screen .
 
 2. In ColorPicker Screen, use button **Selection of Color** to open the customDialog and choose the main color.
