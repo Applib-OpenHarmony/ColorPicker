@@ -95,7 +95,7 @@ dialogController: CustomDialogController = new CustomDialogController({
 ```
 
 ## Compatibility
-Supports OpenHarmony API version 8
+Supports OpenHarmony API version 8 or above
 
 ## Code Contribution
 
