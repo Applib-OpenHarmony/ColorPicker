@@ -21,12 +21,12 @@ struct Index {
   build() {
     Column() {
 
-      Column({ space: 20 }) {
+      Column({ space: '20vp' }) {
         Row() {
           Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
             Button('Color Picker')
-              .height(60)
-              .fontSize(20)
+              .height('60vp')
+              .fontSize('20fp')
               .fontWeight(FontWeight.Bolder)
               .backgroundColor(Color.White)
               .fontColor(Color.Black)
@@ -37,10 +37,10 @@ struct Index {
         }
         .width('100%')
         .backgroundColor('#c2b7bf')
-        .height(70)
+        .height('70vp')
       }
       .alignItems(HorizontalAlign.Center)
-      .margin({ top: 30 })
+      .margin({ top: '30vp' })
     }
   }
 }
