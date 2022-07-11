@@ -20,14 +20,12 @@ import router from '@system.router'
 @Component
 struct colorPicker {
   private model: colorPicker.Model = new colorPicker.Model()
-  @State col: string = '#ff0000'
-  @State h: number = 0
-  @State s: number = 100
-  @State l: number = 50
+  @State FinalColor: string = '#ff0000'
+  @State hue: number = 0
   @State ColorFromGradient: string = '#ff0000'
   @State ColorFromS: string = '#ff0000'
-  @State SliderS: number= 100
-  @State SliderL: number = 50
+  @State SliderSaturation: number= 100
+  @State SliderLightness: number = 50
   @State OpacityOne: number = 1
   dialogController: CustomDialogController = new CustomDialogController({
     builder: colorDialog({ action: (value) => this.onAccept(value) }),
@@ -38,14 +36,14 @@ struct colorPicker {
 
   onAccept(value: number) {
     this.OpacityOne = 1
-    this.h = value;
-    this.SliderS = 100
-    this.SliderL = 50
-    var a = this.HSLToRGB(this.h, this.SliderS, this.SliderL)
-    var b = this.rgbToHex(a[0], a[1], a[2])
-    this.ColorFromS = b
-    this.ColorFromGradient = b
-    this.col = b
+    this.hue = value;
+    this.SliderSaturation = 100
+    this.SliderLightness = 50
+    var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
+    var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
+    this.ColorFromS = HEXCode
+    this.ColorFromGradient = HEXCode
+    this.FinalColor = HEXCode
   }
 
   existApp() {
@@ -73,11 +71,11 @@ struct colorPicker {
         Row() {
           Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
             Button('Selection of Color')
-              .width(250)
-              .height(50)
-              .fontSize(22)
+              .width('250vp')
+              .height('50vp')
+              .fontSize('22fp')
               .backgroundColor(Color.White)
-              .fontColor(this.col)
+              .fontColor(this.FinalColor)
               .fontWeight(FontWeight.Bolder)
               .onClick(() => {
                 this.OpacityOne = 0.2
@@ -89,46 +87,44 @@ struct colorPicker {
               .fontWeight(FontWeight.Bolder)
               .backgroundColor(0XE0E1E4)
               .onClick(() => {
-                console.log(this.col)
+                console.log(this.FinalColor)
                 router.back()
               })
           }
         }
         .backgroundColor('#c2b7bf')
-        .height(70)
-        .borderRadius(20)
+        .height('70vp')
+        .borderRadius('20vp')
 
         Row()
-          .height(20)
+          .height('20vp')
         Row()
           .height('40%')
-          .width('340')
+          .width('340vp')
           .linearGradient({
             angle: 90,
             direction: GradientDirection.Left,
             colors: [[Color.Red, 0], [Color.Yellow, 1 / 6], [0x00FF00, 2 / 6], [0x00FFFF, 3 / 6], [Color.Blue, 4 / 6], [0xFF00FF, 5 / 6], [Color.Red, 1]]
           })
           .onClick((event: ClickEvent) => {
-            this.h = (event.x / 340) * 360;
-            this.SliderS = 100
-            this.SliderL = 50
-            this.s = 100
-            this.l = 50
-            var a = this.HSLToRGB(this.h, this.SliderS, this.SliderL)
-            var b = this.rgbToHex(a[0], a[1], a[2])
-            this.col = b
-            this.ColorFromGradient = b
-            this.ColorFromS = b
+            this.hue = (event.x / 340) * 360;
+            this.SliderSaturation = 100
+            this.SliderLightness = 50
+            var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
+            var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
+            this.FinalColor = HEXCode
+            this.ColorFromGradient = HEXCode
+            this.ColorFromS = HEXCode
           })
         Row()
-          .height(40)
+          .height('40vp')
         Flex({ justifyContent: FlexAlign.Start }) {
-          Text("Saturation :").fontWeight(FontWeight.Bolder).fontSize(15)
+          Text("Saturation :").fontWeight(FontWeight.Bolder).fontSize('15fp')
         }
 
-        Row({ space: 5 }) {
+        Row({ space: '5vp' }) {
           Slider({
-            value: this.SliderS,
+            value: this.SliderSaturation,
             min: 0,
             max: 100,
             style: SliderStyle.OutSet
@@ -138,34 +134,34 @@ struct colorPicker {
             .selectedColor(Color.Blue)
             .showSteps(true)
             .showTips(true)
-            .trackThickness(5)
+            .trackThickness('5vp')
             .onChange((value: number, mode: SliderChangeMode) => {
-              this.SliderS = value
-              var a = this.HSLToRGB(this.h, this.SliderS, this.SliderL)
-              var b = this.rgbToHex(a[0], a[1], a[2])
-              this.ColorFromS = b
-              this.col = b
+              this.SliderSaturation = value
+              var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
+              var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
+              this.ColorFromS = HEXCode
+              this.FinalColor = HEXCode
             })
         }
         .width('100%')
 
         Row()
-          .width(340)
+          .width('340vp')
           .height('5%')
-          .borderRadius(20)
+          .borderRadius('20vp')
           .linearGradient({
             angle: 90,
             colors: [[0x808080, 0], [this.ColorFromGradient, 1]]
           })
         Row()
-          .height(40)
+          .height('40vp')
         Flex({ justifyContent: FlexAlign.Start }) {
-          Text("Lightness :").fontWeight(FontWeight.Bolder).fontSize(15)
+          Text("Lightness :").fontWeight(FontWeight.Bolder).fontSize('15fp')
         }
 
-        Row({ space: 5 }) {
+        Row({ space: '5vp' }) {
           Slider({
-            value: this.SliderL,
+            value: this.SliderLightness,
             min: 0,
             max: 100,
             style: SliderStyle.OutSet
@@ -175,29 +171,29 @@ struct colorPicker {
             .selectedColor(Color.Blue)
             .showSteps(true)
             .showTips(true)
-            .trackThickness(5)
+            .trackThickness('5vp')
             .onChange((value: number, mode: SliderChangeMode) => {
-              this.SliderL = value
-              var a = this.HSLToRGB(this.h, this.SliderS, this.SliderL)
-              var b = this.rgbToHex(a[0], a[1], a[2])
-              this.col = b
+              this.SliderLightness = value
+              var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
+              var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
+              this.FinalColor = HEXCode
             })
         }
         .width('100%')
 
         Row()
-          .width(340)
+          .width('340vp')
           .height('5%')
-          .borderRadius(20)
+          .borderRadius('20vp')
           .linearGradient({
             angle: 90,
             colors: [[Color.Black, 0], [this.ColorFromS, 1 / 2], [Color.White, 1]]
           })
         Row()
-          .height(30)
-        Row({ space: 15 }) {
-          Text("Hex Color Code:").fontWeight(FontWeight.Bolder).fontSize(20)
-          Text(this.col).fontWeight(FontWeight.Bolder).fontColor(this.col).fontSize(25)
+          .height('30vp')
+        Row({ space: '15vp' }) {
+          Text("Hex Color Code:").fontWeight(FontWeight.Bolder).fontSize('20fp')
+          Text(this.FinalColor).fontWeight(FontWeight.Bolder).fontColor(this.FinalColor).fontSize('25fp')
         }
       }
       .padding({ right: '2%', left: '2%', top: '1%' })
@@ -213,4 +209,3 @@ namespace colorPicker {
 }
 
 export default colorPicker;
-
