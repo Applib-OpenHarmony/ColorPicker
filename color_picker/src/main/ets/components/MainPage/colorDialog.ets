@@ -15,10 +15,10 @@
 
 @CustomDialog
 struct colorDialog {
-  @State h: number = 0
-  @State s: number = 100
-  @State l: number = 50
-  @State col: string = '#ff0000'
+  @State hue: number = 0
+  @State saturation: number = 100
+  @State lightness: number = 50
+  @State FinalColor: string = '#ff0000'
   controller: CustomDialogController;
   action: (number) => void;
 
@@ -40,40 +40,40 @@ struct colorDialog {
     Column() {
       Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
         Button('OK')
-          .width(60)
-          .height(40)
+          .width('60vp')
+          .height('40vp')
           .fontColor(Color.Black)
           .fontWeight(FontWeight.Bolder)
           .backgroundColor(0XE0E1E4)
           .onClick(() => {
             this.controller.close();
-            this.action(this.h);
+            this.action(this.hue);
           })
-        Text(this.col).fontWeight(FontWeight.Bolder).fontSize(25).fontColor(this.col)
+        Text(this.FinalColor).fontWeight(FontWeight.Bolder).fontSize('25fp').fontColor(this.FinalColor)
       }
 
       Row()
-        .height(20)
+        .height('20vp')
       Row()
         .height('50%')
-        .width('340')
+        .width('340vp')
         .linearGradient({
           angle: 90,
           direction: GradientDirection.Left,
           colors: [[Color.Red, 0], [Color.Yellow, 1 / 6], [0x00FF00, 2 / 6], [0x00FFFF, 3 / 6], [Color.Blue, 4 / 6], [0xFF00FF, 5 / 6], [Color.Red, 1]]
         })
         .onClick((event: ClickEvent) => {
-          this.h = (event.x / 340) * 360;
-          this.s = 100
-          this.l = 50
-          var a = this.HSLToRGB(this.h, this.s, this.l)
-          var b = this.rgbToHex(a[0], a[1], a[2])
-          this.col = b
+          this.hue = (event.x / 340) * 360;
+          this.saturation = 100
+          this.lightness = 50
+          var RGBPixels = this.HSLToRGB(this.hue, this.saturation, this.lightness)
+          var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
+          this.FinalColor = HEXCode
         })
       Row()
-        .height(30)
+        .height('30vp')
     }
-    .margin({ top: 5 })
+    .margin({ top: '5vp' })
   }
 }
 
