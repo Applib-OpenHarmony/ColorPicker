@@ -135,7 +135,6 @@ struct colorPicker {
           Flex({ justifyContent: FlexAlign.Start }) {
             Text("Saturation :").fontWeight(FontWeight.Bolder).fontSize('15fp')
           }
-
           Row({ space: '5vp' }) {
             Slider({
               value: this.SliderSaturation,
@@ -158,7 +157,6 @@ struct colorPicker {
               })
           }
           .width('100%')
-
           Row()
             .width('340vp')
             .height('5%')
@@ -193,7 +191,6 @@ struct colorPicker {
               })
           }
           .width('100%')
-
           Row()
             .width('340vp')
             .height('5%')
@@ -223,8 +220,3 @@ namespace colorPicker {
 }
 
 export default colorPicker;
-
-
-
-
-
