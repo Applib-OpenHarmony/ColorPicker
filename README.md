@@ -8,7 +8,7 @@ Color Picker in OpenHarmony
 ## Download & Install
 Install using npm
 
-```npm i @ohos/color_picker```
+```npm i @ohos/colorpicker```
 
 Details about OpenHarmony NPM environment configuration, see at [here](https://gitee.com/openharmony-tpc/docs/blob/master/OpenHarmony_npm_usage.md)
 
@@ -16,7 +16,7 @@ Details about OpenHarmony NPM environment configuration, see at [here](https://g
 ## Usage Instructions
 1. Import files and code dependencies
 ```
-import { colorPicker }  from '@ohos/color_picker'
+import { colorPicker }  from '@ohos/colorpicker'
 ```
 2. Initialize ColorPicker model data
 ```
@@ -32,7 +32,8 @@ private model: colorPicker.Model = new colorPicker.Model()
   }
   ```
   
- ![colorPicker](screenshots/colorPicker.png)
+ ![colorPicker](screenshots/colorPicker-1.png)
+ ![colorPicker](screenshots/colorPicker-2.png)
   
 4. Code for creating colorDialog Screen
 ```
@@ -42,15 +43,15 @@ dialogController: CustomDialogController = new CustomDialogController({
     autoCancel: true,
     alignment: DialogAlignment.Bottom,
   });
-
+  
   onAccept(value: number) {
-    this.h = value;
-    var a = this.HSLToRGB(this.h, this.SliderS, this.SliderL)
-    var b = this.rgbToHex(a[0], a[1], a[2])
+    this.hue = value;
+    var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
+    var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
   }
 
   existApp() {
-    this.OpacityOne = 1
+    this.OpacityofScreen = 1
     console.log("Cancel dialog!");
   }
   ```
@@ -64,9 +65,9 @@ dialogController: CustomDialogController = new CustomDialogController({
 
 2. In ColorPicker Screen, use button **Selection of Color** to open the customDialog and choose the main color.
 
-3. Change **Saturation** and **Lightness** to choose any variation of that main color.
+3. Use the button **Change Saturation and Lightness** to change the saturation and lightness of the main color and choose any variation of it.
 
-4. On pressing **OK**, HEX-Code of selected color will be printed in previewer log.
+4. **HEX-Code** of the selected color will be upddated on the screen.
 
 
 
@@ -87,10 +88,9 @@ dialogController: CustomDialogController = new CustomDialogController({
 |           |---- src
 |                 |---- main
 |                       |---- ets
-|                             |----MainAbility
-|                                   |---- pages
-|                                         |---- colorPickerUI.ets
-|                                         |---- index.ets
+|                             |----pages
+|                                   |---- colorPickerUI.ets
+|                                   |---- index.ets
 
 ```
 
