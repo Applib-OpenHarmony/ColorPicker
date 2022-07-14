@@ -10,6 +10,6 @@
   "repository": {},
   "license": "ISC",
   "dependencies": {
-    "@ohos/color_picker": "file:../color_picker"
+    "@ohos/colorpicker": "file:../colorpicker"
   }
 }

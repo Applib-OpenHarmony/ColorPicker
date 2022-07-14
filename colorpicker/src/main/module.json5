@@ -1,6 +1,6 @@
 {
   "module": {
-    "name": "color_picker",
+    "name": "colorpicker",
     "type": "har",
     "deviceTypes": [
       "phone",

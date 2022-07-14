@@ -51,7 +51,6 @@ struct colorDialog {
           })
         Text(this.FinalColor).fontWeight(FontWeight.Bolder).fontSize('25fp').fontColor(this.FinalColor)
       }
-
       Row()
         .height('20vp')
       Row()

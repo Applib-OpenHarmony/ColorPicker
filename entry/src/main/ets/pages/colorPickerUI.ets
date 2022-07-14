@@ -13,12 +13,13 @@
 * limitations under the License.
 */
 
-import { colorPicker }  from '@ohos/color_picker'
+import { colorPicker }  from '@ohos/colorpicker'
 
 @Entry
 @Component
 struct ColorPickerUI {
   private model: colorPicker.Model = new colorPicker.Model()
+
   build() {
     Column() {
       colorPicker({ model: this.model })

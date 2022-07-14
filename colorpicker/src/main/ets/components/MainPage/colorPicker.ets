@@ -14,19 +14,18 @@
 */
 
 import colorDialog  from './colorDialog'
-import router from '@system.router'
 
-@Entry
 @Component
 struct colorPicker {
   private model: colorPicker.Model = new colorPicker.Model()
   @State FinalColor: string = '#ff0000'
   @State hue: number = 0
   @State ColorFromGradient: string = '#ff0000'
-  @State ColorFromS: string = '#ff0000'
+  @State ColorFromSaturationSlider: string = '#ff0000'
   @State SliderSaturation: number= 100
   @State SliderLightness: number = 50
-  @State OpacityOne: number = 1
+  @State OpacityofScreen: number = 1
+  @State OpacityofSliders: number = 0
   dialogController: CustomDialogController = new CustomDialogController({
     builder: colorDialog({ action: (value) => this.onAccept(value) }),
     cancel: this.existApp,
@@ -35,19 +34,19 @@ struct colorPicker {
   });
 
   onAccept(value: number) {
-    this.OpacityOne = 1
+    this.OpacityofScreen = 1
     this.hue = value;
     this.SliderSaturation = 100
     this.SliderLightness = 50
     var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
     var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
-    this.ColorFromS = HEXCode
+    this.ColorFromSaturationSlider = HEXCode
     this.ColorFromGradient = HEXCode
     this.FinalColor = HEXCode
   }
 
   existApp() {
-    this.OpacityOne = 1
+    this.OpacityofScreen = 1
     console.log("Cancel dialog!");
   }
 
@@ -78,28 +77,18 @@ struct colorPicker {
               .fontColor(this.FinalColor)
               .fontWeight(FontWeight.Bolder)
               .onClick(() => {
-                this.OpacityOne = 0.2
+                this.OpacityofScreen = 0.2
                 this.dialogController.open()
-              })
-
-            Button('OK')
-              .fontColor(Color.Black)
-              .fontWeight(FontWeight.Bolder)
-              .backgroundColor(0XE0E1E4)
-              .onClick(() => {
-                console.log(this.FinalColor)
-                router.back()
               })
           }
         }
         .backgroundColor('#c2b7bf')
         .height('70vp')
         .borderRadius('20vp')
-
         Row()
           .height('20vp')
         Row()
-          .height('40%')
+          .height('35%')
           .width('340vp')
           .linearGradient({
             angle: 90,
@@ -114,81 +103,107 @@ struct colorPicker {
             var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
             this.FinalColor = HEXCode
             this.ColorFromGradient = HEXCode
-            this.ColorFromS = HEXCode
+            this.ColorFromSaturationSlider = HEXCode
           })
         Row()
-          .height('40vp')
-        Flex({ justifyContent: FlexAlign.Start }) {
-          Text("Saturation :").fontWeight(FontWeight.Bolder).fontSize('15fp')
+          .height('20vp')
+        Row() {
+          Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
+            Button('Change Saturation\n and Lightness')
+              .width('250vp')
+              .height('50vp')
+              .fontSize('18fp')
+              .backgroundColor(Color.White)
+              .fontColor(Color.Black)
+              .fontWeight(FontWeight.Bolder)
+              .align(Alignment.Center)
+              .onClick(() => {
+                this.OpacityofSliders = 1
+              })
+          }
         }
+        .backgroundColor('#c2b7bf')
+        .height('70vp')
+        .borderRadius('20vp')
+        Row()
+          .height('20vp')
+        Row({ space: '15vp' }) {
+          Text("Hex Color Code:").fontWeight(FontWeight.Bolder).fontSize('20fp')
+          Text(this.FinalColor).fontWeight(FontWeight.Bolder).fontColor(this.FinalColor).fontSize('25fp')
+        }
+        Column() {
+          Flex({ justifyContent: FlexAlign.Start }) {
+            Text("Saturation :").fontWeight(FontWeight.Bolder).fontSize('15fp')
+          }
 
-        Row({ space: '5vp' }) {
-          Slider({
-            value: this.SliderSaturation,
-            min: 0,
-            max: 100,
-            style: SliderStyle.OutSet
-          })
-            .blockColor(Color.Blue)
-            .trackColor(Color.Gray)
-            .selectedColor(Color.Blue)
-            .showSteps(true)
-            .showTips(true)
-            .trackThickness('5vp')
-            .onChange((value: number, mode: SliderChangeMode) => {
-              this.SliderSaturation = value
-              var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
-              var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
-              this.ColorFromS = HEXCode
-              this.FinalColor = HEXCode
+          Row({ space: '5vp' }) {
+            Slider({
+              value: this.SliderSaturation,
+              min: 0,
+              max: 100,
+              style: SliderStyle.OutSet
+            })
+              .blockColor(Color.Blue)
+              .trackColor(Color.Gray)
+              .selectedColor(Color.Blue)
+              .showSteps(true)
+              .showTips(true)
+              .trackThickness('5vp')
+              .onChange((value: number, mode: SliderChangeMode) => {
+                this.SliderSaturation = value
+                var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
+                var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
+                this.ColorFromSaturationSlider = HEXCode
+                this.FinalColor = HEXCode
+              })
+          }
+          .width('100%')
+
+          Row()
+            .width('340vp')
+            .height('5%')
+            .borderRadius('20vp')
+            .linearGradient({
+              angle: 90,
+              colors: [[0x808080, 0], [this.ColorFromGradient, 1]]
+            })
+          Row()
+            .height('40vp')
+          Flex({ justifyContent: FlexAlign.Start }) {
+            Text("Lightness :").fontWeight(FontWeight.Bolder).fontSize('15fp')
+          }
+          Row({ space: '5vp' }) {
+            Slider({
+              value: this.SliderLightness,
+              min: 0,
+              max: 100,
+              style: SliderStyle.OutSet
+            })
+              .blockColor(Color.Blue)
+              .trackColor(Color.Gray)
+              .selectedColor(Color.Blue)
+              .showSteps(true)
+              .showTips(true)
+              .trackThickness('5vp')
+              .onChange((value: number, mode: SliderChangeMode) => {
+                this.SliderLightness = value
+                var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
+                var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
+                this.FinalColor = HEXCode
+              })
+          }
+          .width('100%')
+
+          Row()
+            .width('340vp')
+            .height('5%')
+            .borderRadius('20vp')
+            .linearGradient({
+              angle: 90,
+              colors: [[Color.Black, 0], [this.ColorFromSaturationSlider, 1 / 2], [Color.White, 1]]
             })
         }
-        .width('100%')
-
-        Row()
-          .width('340vp')
-          .height('5%')
-          .borderRadius('20vp')
-          .linearGradient({
-            angle: 90,
-            colors: [[0x808080, 0], [this.ColorFromGradient, 1]]
-          })
-        Row()
-          .height('40vp')
-        Flex({ justifyContent: FlexAlign.Start }) {
-          Text("Lightness :").fontWeight(FontWeight.Bolder).fontSize('15fp')
-        }
-
-        Row({ space: '5vp' }) {
-          Slider({
-            value: this.SliderLightness,
-            min: 0,
-            max: 100,
-            style: SliderStyle.OutSet
-          })
-            .blockColor(Color.Blue)
-            .trackColor(Color.Gray)
-            .selectedColor(Color.Blue)
-            .showSteps(true)
-            .showTips(true)
-            .trackThickness('5vp')
-            .onChange((value: number, mode: SliderChangeMode) => {
-              this.SliderLightness = value
-              var RGBPixels = this.HSLToRGB(this.hue, this.SliderSaturation, this.SliderLightness)
-              var HEXCode = this.rgbToHex(RGBPixels[0], RGBPixels[1], RGBPixels[2])
-              this.FinalColor = HEXCode
-            })
-        }
-        .width('100%')
-
-        Row()
-          .width('340vp')
-          .height('5%')
-          .borderRadius('20vp')
-          .linearGradient({
-            angle: 90,
-            colors: [[Color.Black, 0], [this.ColorFromS, 1 / 2], [Color.White, 1]]
-          })
+        .opacity(this.OpacityofSliders)
         Row()
           .height('30vp')
         Row({ space: '15vp' }) {
@@ -198,7 +213,6 @@ struct colorPicker {
       }
       .padding({ right: '2%', left: '2%', top: '1%' })
     }
-    .opacity(this.OpacityOne)
     .height('100%')
   }
 }
@@ -209,3 +223,8 @@ namespace colorPicker {
 }
 
 export default colorPicker;
+
+
+
+
+

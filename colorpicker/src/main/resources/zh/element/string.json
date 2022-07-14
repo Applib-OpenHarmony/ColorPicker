@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "描述"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "描述"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "标签"
+    },
+    {
+      "name": "cancel",
+      "value": "取消"
+    },
+    {
+      "name": "ok",
+      "value": "好的"
+    },
+    {
+      "name": "color_picker",
+      "value": "选色器"
+    },
+    {
+      "name": "selection_of_color",
+      "value": "颜色的选择"
+    },
+    {
+      "name": "change_saturation_and_lightness",
+      "value": "改变饱和度和亮度"
+    },
+    {
+      "name": "hex_color_code",
+      "value": "十六进制颜色代码"
+    },
+    {
+      "name": "saturation",
+      "value": "饱和"
+    },
+    {
+      "name": "lightness",
+      "value": "亮度"
+    }
+  ]
+}

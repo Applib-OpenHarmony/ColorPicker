@@ -24,8 +24,12 @@
       ]
     },
     {
-      "name": "color_picker",
-      "srcPath": "./color_picker"
+      "name": "colorpicker",
+      "srcPath": "./colorpicker"
+    },
+    {
+      "name": "colorpicker",
+      "srcPath": "./colorpicker"
     }
   ]
 }

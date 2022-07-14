@@ -20,7 +20,6 @@ import router from '@system.router';
 struct Index {
   build() {
     Column() {
-
       Column({ space: '20vp' }) {
         Row() {
           Flex({ justifyContent: FlexAlign.SpaceEvenly }) {
