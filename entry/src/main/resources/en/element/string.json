@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "entry_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MainAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "cancel",
+      "value": "Cancel"
+    },
+    {
+      "name": "ok",
+      "value": "Ok"
+    },
+    {
+      "name": "color_picker",
+      "value": "Color Picker"
+    },
+    {
+      "name": "selection_of_color",
+      "value": "Selection of Color"
+    },
+    {
+      "name": "change_saturation_and_lightness",
+      "value": "Change Saturation and Lightness"
+    },
+    {
+      "name": "hex_color_code",
+      "value": "Hex Color Code"
+    },
+    {
+      "name": "saturation",
+      "value": "Saturation"
+    },
+    {
+      "name": "lightness",
+      "value": "Lightness"
+    }
+  ]
+}
